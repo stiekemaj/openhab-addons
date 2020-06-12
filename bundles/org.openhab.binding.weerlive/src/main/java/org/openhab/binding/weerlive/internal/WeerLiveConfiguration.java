@@ -12,15 +12,19 @@
  */
 package org.openhab.binding.weerlive.internal;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+import org.eclipse.jdt.annotation.Nullable;
+
 /**
  * The {@link WeerLiveConfiguration} class contains fields mapping thing configuration parameters.
  *
  * @author Jeroen Stiekema - Initial contribution
  */
+@NonNullByDefault
 public class WeerLiveConfiguration {
 
     /**
      * Sample configuration parameter. Replace with your own.
      */
-    public String config1;
+    public @Nullable String config1;
 }

@@ -10,7 +10,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  */
-package org.openhab.binding.weerlive.internal;
+package org.openhab.binding.weerlive.internal.handler;
 
 import static org.openhab.binding.weerlive.internal.WeerLiveBindingConstants.*;
 
@@ -19,11 +19,16 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingStatus;
+import org.eclipse.smarthome.core.thing.ThingTypeUID;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandler;
 import org.eclipse.smarthome.core.types.Command;
 import org.eclipse.smarthome.core.types.RefreshType;
+import org.openhab.binding.weerlive.internal.WeerLiveConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Collections;
+import java.util.Set;
 
 /**
  * The {@link WeerLiveHandler} is responsible for handling commands, which are
@@ -35,6 +40,8 @@ import org.slf4j.LoggerFactory;
 public class WeerLiveHandler extends BaseThingHandler {
 
     private final Logger logger = LoggerFactory.getLogger(WeerLiveHandler.class);
+
+    public static final Set<ThingTypeUID> SUPPORTED_THING_TYPES = Collections.singleton(THING_TYPE_WEATHER_AND_FORECAST);
 
     private @Nullable WeerLiveConfiguration config;
 

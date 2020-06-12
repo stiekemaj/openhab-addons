@@ -4,10 +4,14 @@
 	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
 	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
 
-	<!-- Sample Thing Type -->
-	<thing-type id="sample">
-		<label>WeerLive Binding Thing</label>
-		<description>Sample thing for WeerLive Binding</description>
+	<!-- Weerlive Binding -->
+	<thing-type id="weather-and-forecast">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="weerlive-api"/>
+		</supported-bridge-type-refs>
+
+		<label>Weather and Forecast</label>
+		<description>Provides current weather and forecast data from the Weerlive.nl API</description>
 
 		<channels>
 			<channel id="channel1" typeId="sample-channel" />

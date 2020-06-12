@@ -16,14 +16,19 @@ import static org.openhab.binding.weerlive.internal.WeerLiveBindingConstants.*;
 
 import java.util.Collections;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.smarthome.core.thing.Bridge;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingTypeUID;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandlerFactory;
 import org.eclipse.smarthome.core.thing.binding.ThingHandler;
 import org.eclipse.smarthome.core.thing.binding.ThingHandlerFactory;
+import org.openhab.binding.weerlive.internal.handler.WeerLiveBridgeHandler;
+import org.openhab.binding.weerlive.internal.handler.WeerLiveHandler;
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -36,7 +41,9 @@ import org.osgi.service.component.annotations.Component;
 @Component(configurationPid = "binding.weerlive", service = ThingHandlerFactory.class)
 public class WeerLiveHandlerFactory extends BaseThingHandlerFactory {
 
-    private static final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS = Collections.singleton(THING_TYPE_SAMPLE);
+    private static final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS = Collections
+            .unmodifiableSet(Stream.concat(WeerLiveBridgeHandler.SUPPORTED_THING_TYPES.stream(),
+                    WeerLiveHandler.SUPPORTED_THING_TYPES.stream()).collect(Collectors.toSet()));
 
     @Override
     public boolean supportsThingType(ThingTypeUID thingTypeUID) {
@@ -47,7 +54,9 @@ public class WeerLiveHandlerFactory extends BaseThingHandlerFactory {
     protected @Nullable ThingHandler createHandler(Thing thing) {
         ThingTypeUID thingTypeUID = thing.getThingTypeUID();
 
-        if (THING_TYPE_SAMPLE.equals(thingTypeUID)) {
+        if (THING_TYPE_WEER_LIVE_API.equals(thingTypeUID)) {
+            return new WeerLiveBridgeHandler((Bridge) thing);
+        } else if (THING_TYPE_WEATHER_AND_FORECAST.equals(thingTypeUID)) {
             return new WeerLiveHandler(thing);
         }
 

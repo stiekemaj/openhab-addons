@@ -26,8 +26,11 @@ public class WeerLiveBindingConstants {
 
     private static final String BINDING_ID = "weerlive";
 
-    // List of all Thing Type UIDs
-    public static final ThingTypeUID THING_TYPE_SAMPLE = new ThingTypeUID(BINDING_ID, "sample");
+    // Bridge
+    public static final ThingTypeUID THING_TYPE_WEER_LIVE_API = new ThingTypeUID(BINDING_ID, "weerlive-api");
+
+    // Things
+    public static final ThingTypeUID THING_TYPE_WEATHER_AND_FORECAST = new ThingTypeUID(BINDING_ID, "weather-and-forecast");
 
     // List of all Channel ids
     public static final String CHANNEL_1 = "channel1";
